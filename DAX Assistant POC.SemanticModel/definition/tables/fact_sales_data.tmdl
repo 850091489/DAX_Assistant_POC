@@ -1,0 +1,166 @@
+table fact_sales_data
+	lineageTag: 75867c17-c17c-4f58-9667-b496fbdaccf0
+
+	column Segment
+		dataType: string
+		lineageTag: ae6914de-e12b-4638-bb7d-19643b6b4b75
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: e54d0686-907b-4ea3-96b4-d0a82070e952
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 8b39c336-3a15-4b9b-a6a0-1c681dfbe291
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discount Band'
+		dataType: string
+		lineageTag: e39b302c-ff1a-4e5c-a824-f9a5696f6a00
+		summarizeBy: none
+		sourceColumn: Discount Band
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Units Sold'
+		dataType: double
+		lineageTag: 4322d545-49a6-4b6e-b8a9-19b9db72c692
+		summarizeBy: sum
+		sourceColumn: Units Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Manufacturing Price'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9a1739c0-19e2-489c-96b3-d3da4da7479a
+		summarizeBy: sum
+		sourceColumn: Manufacturing Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sale Price'
+		dataType: int64
+		formatString: 0
+		lineageTag: b66936cb-3b1c-43b0-b06f-29ba3fcb5db4
+		summarizeBy: sum
+		sourceColumn: Sale Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Sales'
+		dataType: double
+		lineageTag: f3896b8d-0de1-4217-89c7-da7600850ccd
+		summarizeBy: sum
+		sourceColumn: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discounts
+		dataType: double
+		lineageTag: d082478d-a7b7-4822-8761-d152dc78cdef
+		summarizeBy: sum
+		sourceColumn: Discounts
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sales
+		dataType: double
+		lineageTag: c75b1252-b664-4754-894c-ea3d4263126e
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COGS
+		dataType: double
+		lineageTag: 4e8810bb-b7f2-4b3e-8d84-50724f8310dd
+		summarizeBy: sum
+		sourceColumn: COGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Profit
+		dataType: double
+		lineageTag: 64d55450-fb70-4804-8b26-431924f20f0a
+		summarizeBy: sum
+		sourceColumn: Profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: bd743549-2f47-4884-afc9-5953a2b7d870
+		summarizeBy: sum
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: aca3e0f2-9756-4fb0-8eda-cc8aebc75b8d
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: fc1735df-4369-4ef9-82ab-adee9c57b937
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 33a9f26d-0d18-4eeb-85c7-6c6a4cb75868
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: f2d4cd3e-5f80-4c78-88af-a2cafb8c8ddc
+			defaultHierarchy: LocalDateTable_cac0e9f2-e1b8-4289-9b6e-4f02a0234673.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition fact_sales_data = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405608584754201.1.azuredatabricks.net", "/sql/1.0/warehouses/b3824e9a5ea18f2d", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0"]),
+				    e360plus_poc_Database = Source{[Name="e360plus_poc",Kind="Database"]}[Data],
+				    gold_poc_Schema = e360plus_poc_Database{[Name="gold_poc",Kind="Schema"]}[Data],
+				    fact_sales_data_Table = gold_poc_Schema{[Name="fact_sales_data",Kind="Table"]}[Data]
+				in
+				    fact_sales_data_Table
+

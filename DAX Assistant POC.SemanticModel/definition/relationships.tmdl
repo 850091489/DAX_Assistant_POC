@@ -1,0 +1,5 @@
+relationship f2d4cd3e-5f80-4c78-88af-a2cafb8c8ddc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_sales_data.Date
+	toColumn: LocalDateTable_cac0e9f2-e1b8-4289-9b6e-4f02a0234673.Date
+

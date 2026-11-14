@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "DAX Assistant POC"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4e674ac0-b321-4d4a-b15b-5b7cb2eda2bf"
+  }
+}
